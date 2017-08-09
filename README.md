@@ -17,7 +17,7 @@ INTRODUCTION
 
 DDL is a C# library. With which you can create any 
 ransomware malware you wish, note that this is only 
-made for educational purposes..
+made for educational purposes.
 
 Please report all problems or suggestions to the author. Thanks.
 
