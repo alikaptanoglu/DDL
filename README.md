@@ -3,7 +3,7 @@ DDL
 
 DARK DROP LIB
 
-Copyright (c) 2017 Nirex
+Copyright (c) 2018 Nirex
 
 WELCOME
 =======
@@ -24,7 +24,7 @@ Please report all problems or suggestions to the author. Thanks.
 COPYRIGHT
 =========
 
-Copyright (C) 2017 Nirex
+Copyright (C) 2018 Nirex
 
 Please read the LICENSE file for License details and terms of use.
 
