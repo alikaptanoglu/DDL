@@ -31,7 +31,7 @@ Please read the LICENSE file for License details and terms of use.
 USED TERMS
 ==========
 
-[ The term DDL is a shorthand for the Dark Drop API and holds no connection with potential owners of registered trademarks or other rights. ]
+[ The term DDL is a shorthand for the Dark Drop Library and holds no connection with potential owners of registered trademarks or other rights. ]
 
 CONTACT
 =======
