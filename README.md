@@ -10,7 +10,7 @@ WELCOME
 
 Welcome to DDL
 
-Please don't forget to read the file LICENSE
+Please don't forget to read the LICENSE file.
 
 INTRODUCTION
 ============
